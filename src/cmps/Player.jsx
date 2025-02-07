@@ -5,15 +5,17 @@ export default function Player({name,symbol}) {
     const[playerName ,setPlayerName] = useState(name);
     let editButton =!isEditing ? "edit" : "save"
     function handleEditing(){
-    setIsEditing(()=>!isEditing)
+    setIsEditing((editing)=>!isEditing)
     }
 
-
+function handleChange(ev){
+  setPlayerName(ev.target.value)
+}
   return (
     <li>
 <span className='player' >
-    {!isEditing ? <span className='player-name'>{name}</span> : 
-    <input type="text" value={playerName}/>
+    {!isEditing ? <span className='player-name'>{playerName}</span> : 
+    <input type="text" required value={playerName} onChange={handleChange}/>
     }
     
     <span className='player-symbol'>{symbol}</span>
